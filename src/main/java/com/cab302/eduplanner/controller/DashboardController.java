@@ -39,6 +39,7 @@ public class DashboardController {
 
     // User header
     @FXML private Label greetingLabel;
+    @FXML private Label greetingSubtitle;
     @FXML private Label localTimeLabel;
 
     // Tasks panel header
@@ -81,6 +82,9 @@ public class DashboardController {
         String first = (user != null && user.getFirstName() != null && !user.getFirstName().isBlank())
                 ? user.getFirstName() : "User";
         greetingLabel.setText("Welcome back, " + first);
+        if (greetingSubtitle != null) {
+            greetingSubtitle.setText(defaultGreetingSubtitle());
+        }
 
         tickClock();
         startMinuteTicker();
@@ -99,6 +103,13 @@ public class DashboardController {
         rubricTile.setDisable(false);
 
         refreshTasks(); // loads from DB and renders
+    }
+
+    /**
+     * Returns the default supportive subtitle shown under the greeting header.
+     */
+    static String defaultGreetingSubtitle() {
+        return "Keep your study plan on track today.";
     }
 
     // Local time helpers

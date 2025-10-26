@@ -20,10 +20,16 @@
             </padding>
 
             <center>
-                <Label fx:id="greetingLabel"
-                       style="-fx-font-size: 24px; -fx-font-weight: bold;"
-                       text="Welcome back, User"
-                       BorderPane.alignment="CENTER"/>
+                <VBox alignment="CENTER_LEFT" spacing="4" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label fx:id="greetingLabel"
+                               style="-fx-font-size: 24px; -fx-font-weight: bold;"
+                               text="Welcome back, User"/>
+                        <Label fx:id="greetingSubtitle"
+                               styleClass="greeting-subtitle"
+                               text="Keep your study plan on track today."/>
+                    </children>
+                </VBox>
             </center>
 
             <right>

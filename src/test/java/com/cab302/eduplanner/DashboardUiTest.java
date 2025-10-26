@@ -1,12 +1,15 @@
 package com.cab302.eduplanner;
 
+import com.cab302.eduplanner.controller.DashboardController;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Random;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DashboardUiTest {
@@ -20,34 +23,33 @@ class DashboardUiTest {
     }
 
     @Test
-    @DisplayName("Dashboard FXML exposes a subtitle label under the greeting")
-    void subtitleLabelIsDeclared() {
-        String fxml = read("src/main/resources/com/cab302/eduplanner/dashboard.fxml");
-        assertTrue(fxml.contains("fx:id=\"greetingSubtitle\""),
-                "Expected dashboard.fxml to declare a greetingSubtitle label");
+    @DisplayName("Dashboard keeps four short motivational quips on hand")
+    void motivationalQuipListHasFourEntries() {
+        assertEquals(4, DashboardController.motivationalQuips().size(),
+                "Expected the dashboard to rotate through four motivational quips");
     }
 
     @Test
-    @DisplayName("Greeting subtitle copy nudges the user to stay on track")
-    void subtitleUsesFriendlyCopy() {
-        String fxml = read("src/main/resources/com/cab302/eduplanner/dashboard.fxml");
-        assertTrue(fxml.contains("Keep your study plan on track today."),
-                "Greeting subtitle text should encourage study focus");
+    @DisplayName("Motivational quip selection respects supplied randomness")
+    void motivationalQuipSelectionRespectsSeed() {
+        String quip = DashboardController.randomMotivationalQuip(new Random(0));
+        assertEquals("Your effort today fuels success.", quip,
+                "Seeded random should deterministically select the third quip");
     }
 
     @Test
-    @DisplayName("Greeting subtitle label is styled with a dedicated CSS class")
-    void subtitleHasStyleClass() {
+    @DisplayName("Dashboard header exposes a local date label")
+    void headerDeclaresLocalDateLabel() {
         String fxml = read("src/main/resources/com/cab302/eduplanner/dashboard.fxml");
-        assertTrue(fxml.contains("styleClass=\"greeting-subtitle\""),
-                "Greeting subtitle should use the greeting-subtitle style class");
+        assertTrue(fxml.contains("fx:id=\"localDateLabel\""),
+                "Expected dashboard.fxml to declare a localDateLabel for the header");
     }
 
     @Test
-    @DisplayName("Dashboard stylesheet defines the greeting subtitle style")
-    void stylesheetDefinesGreetingSubtitleClass() {
+    @DisplayName("Dashboard stylesheet defines the local date style hook")
+    void stylesheetDefinesLocalDateClass() {
         String css = read("src/main/resources/com/cab302/eduplanner/styles/dashboard.css");
-        assertTrue(css.contains(".greeting-subtitle"),
-                "dashboard.css should define the greeting-subtitle class");
+        assertTrue(css.contains(".local-date"),
+                "dashboard.css should define the local-date style class");
     }
 }

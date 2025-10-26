@@ -20,23 +20,24 @@
             </padding>
 
             <center>
-                <VBox alignment="CENTER_LEFT" spacing="4" BorderPane.alignment="CENTER">
-                    <children>
-                        <Label fx:id="greetingLabel"
-                               style="-fx-font-size: 24px; -fx-font-weight: bold;"
-                               text="Welcome back, User"/>
-                        <Label fx:id="greetingSubtitle"
-                               styleClass="greeting-subtitle"
-                               text="Keep your study plan on track today."/>
-                    </children>
-                </VBox>
+                <Label fx:id="greetingLabel"
+                       style="-fx-font-size: 24px; -fx-font-weight: bold;"
+                       text="Welcome back, User"
+                       BorderPane.alignment="CENTER"/>
             </center>
 
             <right>
-                <Label fx:id="localTimeLabel"
-                       style="-fx-font-size: 18px;"
-                       text="12:00"
-                       BorderPane.alignment="CENTER_RIGHT"/>
+                <VBox alignment="CENTER_RIGHT" spacing="4" BorderPane.alignment="CENTER_RIGHT">
+                    <children>
+                        <Label fx:id="localTimeLabel"
+                               style="-fx-font-size: 18px;"
+                               text="12:00"/>
+                        <Label fx:id="localDateLabel"
+                               id="localDateLabel"
+                               styleClass="local-date"
+                               text="Mon, 1 Jan"/>
+                    </children>
+                </VBox>
             </right>
         </BorderPane>
     </top>

@@ -42,6 +42,7 @@ public class DashboardController {
 
     // User header
     @FXML private Label greetingLabel;
+    @FXML private Label motivationalLabel;
     @FXML private Label localTimeLabel;
     @FXML private Label localDateLabel;
 
@@ -80,8 +81,15 @@ public class DashboardController {
         // Clear any placeholder nodes
         cardsBox.getChildren().clear();
 
-        // Greeting swaps between short motivational quips each launch
-        greetingLabel.setText(randomMotivationalQuip());
+        // Greeting from session with motivational support copy underneath
+        var user = UserSession.getCurrentUser();
+        String first = (user != null && user.getFirstName() != null && !user.getFirstName().isBlank())
+                ? user.getFirstName() : "User";
+        greetingLabel.setText("Welcome back, " + first);
+
+        if (motivationalLabel != null) {
+            motivationalLabel.setText(randomMotivationalQuip());
+        }
 
         tickClock();
         showLocalDate();

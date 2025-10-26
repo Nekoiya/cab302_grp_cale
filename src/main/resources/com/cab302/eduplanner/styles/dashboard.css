@@ -16,6 +16,12 @@
     -fx-text-fill: -color-primary;
 }
 
+.motivation-quip {
+    -fx-font-size: 14px;
+    -fx-text-fill: -color-muted;
+    -fx-font-weight: 500;
+}
+
 /* Local time */
 #localTimeLabel {
     -fx-font-size: 18px;

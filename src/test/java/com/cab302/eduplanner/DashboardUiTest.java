@@ -46,10 +46,26 @@ class DashboardUiTest {
     }
 
     @Test
+    @DisplayName("Dashboard header includes a motivational quip label")
+    void headerDeclaresMotivationalLabel() {
+        String fxml = read("src/main/resources/com/cab302/eduplanner/dashboard.fxml");
+        assertTrue(fxml.contains("fx:id=\"motivationalLabel\""),
+                "Dashboard header should provide a dedicated motivationalLabel beneath the greeting");
+    }
+
+    @Test
     @DisplayName("Dashboard stylesheet defines the local date style hook")
     void stylesheetDefinesLocalDateClass() {
         String css = read("src/main/resources/com/cab302/eduplanner/styles/dashboard.css");
         assertTrue(css.contains(".local-date"),
                 "dashboard.css should define the local-date style class");
+    }
+
+    @Test
+    @DisplayName("Dashboard stylesheet styles motivational quips")
+    void stylesheetDefinesMotivationClass() {
+        String css = read("src/main/resources/com/cab302/eduplanner/styles/dashboard.css");
+        assertTrue(css.contains(".motivation-quip"),
+                "dashboard.css should expose a motivation-quip style class for the subtitle");
     }
 }
